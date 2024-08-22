@@ -1,0 +1,5 @@
+api key: AIzaSyBnkrLzmcWjKBf7TdGATCrf6SmpfKW_Kjw
+sheetId: 1hzQjE8BH0Ilm8nam7sNRKRyAsd9akxQdKjLz4oBF8is
+
+https://sheets.googleapis.com/v4/spreadsheets/1hzQjE8BH0Ilm8nam7sNRKRyAsd9akxQdKjLz4oBF8is/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=AIzaSyBnkrLzmcWjKBf7TdGATCrf6SmpfKW_Kjw
+

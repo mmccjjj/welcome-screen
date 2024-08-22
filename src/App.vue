@@ -1,4 +1,28 @@
 <script setup>
+import {onMounted,ref}  from 'vue';
+
+const screenData= ref([]);
+
+async function fetchScreenData() {
+
+    try{
+            const response = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1hzQjE8BH0Ilm8nam7sNRKRyAsd9akxQdKjLz4oBF8is/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=AIzaSyBnkrLzmcWjKBf7TdGATCrf6SmpfKW_Kjw')
+            const data = await response.json()
+            screenData.value = data.valueRanges[0].values.slice(1)
+            console.log(screenData.value);
+    }catch (error){
+            console.log(error)
+    }
+}
+
+onMounted(() => {
+  fetchScreenData()
+})
+
+
+
+
+
 
 const date= new Date();
 
@@ -23,7 +47,7 @@ const formattedDate= formatDate(date);
     <p>{{formattedDate}}</p>
     <div class="content">
       <ul>
-        <li class="itemTime">14.00 Uhr</li>
+        <li class="itemTime"></li>
         <li class=" itemTitle">Basisbeschäftigung</li>
         <li class=" itemText">Interessierte für den zweiten Kurs werden uns besuchen</li>
       </ul>
