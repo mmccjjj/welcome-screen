@@ -1,47 +1,130 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+
+const date= new Date();
+
+const formatDate = (date) => {
+  const tag = String(date.getDate()).padStart(2, '0');
+  const monat = String(date.getMonth() + 1).padStart(2, '0');
+  const jahr = date.getFullYear();
+  return `${tag}.${monat}.${jahr}`;
+};
+
+const formattedDate= formatDate(date);
+
 </script>
 
 <template>
+  <div class="fullPage">
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
+    <h1>Welcome to Opportunity</h1>
   </header>
 
   <main>
-    <TheWelcome />
+    <p>{{formattedDate}}</p>
+    <div class="content">
+      <ul>
+        <li class="itemTime">14.00 Uhr</li>
+        <li class=" itemTitle">Basisbeschäftigung</li>
+        <li class=" itemText">Interessierte für den zweiten Kurs werden uns besuchen</li>
+      </ul>
+    </div>
+    <div class="content">
+      <ul>
+        <li class="itemTime">14.00 Uhr</li>
+        <li class=" itemTitle">Basisbeschäftigung</li>
+        <li class=" itemText">Interessierte für den zweiten Kurs werden uns besuchen</li>
+      </ul>
+    </div>
+    <div class="content">
+      <ul>
+        <li class="itemTime">14.00 Uhr</li>
+        <li class=" itemTitle">Basisbeschäftigung</li>
+        <li class=" itemText">Interessierte für den zweiten Kurs werden uns besuchen</li>
+      </ul>
+    </div>
   </main>
+
+  <footer>
+    <img class="logoZh" src="@/assets/logos/STZH_SEB_Logo.png" alt="Logo" height="44">
+    <img class="logoOp" src="@/assets/logos/Opportunity.png" alt="Logo" height="55">
+    <img class="logoSa" src="@/assets/logos/SAG_Logo_De.png" alt="Logo" height="52">
+  </footer>
+</div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+
+li{
+  color: 
+  #FFBFAB;
+  font-size: 28px;
+  font-weight: 900;
+  margin-top: 8px;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.itemTime{
+  color: #EB5E00;
+  margin-top: 0;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.itemText{
+  font-weight: 500;
 }
+
+
+.content{
+  height: 182px;
+  width: 960px;
+  background-color: #0F05A0;
+  margin: 0 auto 40px auto;
+  padding: 34.5px 0 0 35px;
+}
+
+p{
+  color: #9AA7B1;
+  font-size: 62px;
+  font-weight: 500;
+  margin: 21px 0 36px 60px;
+}
+
+h1{
+  font-size: 62px;
+  font-weight: 900;
+  margin: 69px 0 0 60px;
+}
+
+.fullPage{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main{
+  /* flex: 1; */
+  width: 100vw;
+  height: 100vh;
+}
+
+footer{
+  width: 100%;
+  height: 130px;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  padding-left: 40px;
+  padding-right: 40px;
+  
+}
+
+.logoOp{
+ justify-self: center;
+ margin-left: auto;
+ margin-right: auto;
+}
+
+/* .logoSa{
+  margin-left: auto;
+  
+} */
+
 </style>
