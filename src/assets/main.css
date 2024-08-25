@@ -14,8 +14,6 @@ html, body {
     font-size: 100%;
     line-height: 1;
     font-family: inter;
-    display: flex;
-    flex-direction: column;
 }
 
 body {
