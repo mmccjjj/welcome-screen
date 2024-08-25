@@ -31,22 +31,4 @@ main{
   height: auto;
 }
 
-footer{
-  width: 100%;
-  height: 130px;
-  background-color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  padding-left: 40px;
-  padding-right: 40px;
-  margin-top: auto;
-  
-}
-
-.logoOp{
- justify-self: center;
- margin-left: auto;
- margin-right: auto;
-}
-
 </style>
