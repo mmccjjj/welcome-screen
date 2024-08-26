@@ -29,6 +29,7 @@ main{
   width: 100vw;
   min-height: 1920px;
   height: auto;
+  padding: 0 60px 0 60px;
 }
 
 </style>

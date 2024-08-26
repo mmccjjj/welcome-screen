@@ -1,7 +1,9 @@
 <script setup>
-import {onMounted,ref}  from 'vue';
+import {onMounted,ref, onUnmounted}  from 'vue';
 
 const screenData= ref([]);
+const token= "3ulADlktGGVwNiK1yblJ5ElAUU1o";
+let intervalId = null;
 
 async function fetchScreenData() {
 
@@ -9,15 +11,22 @@ async function fetchScreenData() {
             const response = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1hzQjE8BH0Ilm8nam7sNRKRyAsd9akxQdKjLz4oBF8is/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=AIzaSyBnkrLzmcWjKBf7TdGATCrf6SmpfKW_Kjw')
             const data = await response.json()
             screenData.value = data.valueRanges[0].values.slice(1)
-            console.log(screenData.value);
     }catch (error){
             console.log(error)
     }
 }
 
 onMounted(() => {
-  fetchScreenData()
-})
+  fetchScreenData();
+  intervalId = setInterval(  fetchScreenData, 2* 60* 60* 1000);
+});
+
+onUnmounted(() => {
+      if (intervalId) {
+        clearInterval(intervalId);
+        console.log('Intervall gestoppt mit ID:', intervalId);
+      }
+    });
 
 const date= new Date();
 
@@ -35,11 +44,16 @@ const formattedDate= formatDate(date);
 <template>
     <div>
         <p>{{formattedDate}}</p>
-        <div v-if="screenData" v-for="(item, index) in screenData" :key="index" :class="item[4] == 'Räffelstrasse' ? 'contentIn' : 'contentOut'">
+        <div  v-if="screenData" 
+              v-for="(item, index) in screenData" :key="index" 
+              class= "content" 
+              :class="item[3] == 'Oppotunity, Räffelstrasse 12' ? 'in' : 'out'"
+              >
             <ul>
-                <li :class="item[4] == 'Räffelstrasse' ? 'itemTimeIn' : 'itemTimeOut'">{{ item[0] }}, {{ item[1] }}</li>
+                <li :class="item[3] == 'Oppotunity, Räffelstrasse 12' ? 'itemTimeIn' : 'itemTimeOut'"
+                    class= "itemTime">{{ item[1] }}, {{ item[0] }}</li>
                 <li class=" itemTitle">{{item[2]}}</li>
-                <li class=" itemText">{{ item[3] }}</li>
+                <li class=" itemAdress">{{ item[3] }}</li>
             </ul>
         </div>
     </div>
@@ -55,42 +69,47 @@ li{
   margin-top: 8px;
 }
 
+.itemTime{
+  margin-top: 0;
+}
+
 .itemTimeIn{
   color: #EB5E00;
-  margin-top: 0;
 }
 
 .itemTimeOut{
   color: #0F05A0;
-  margin-top: 0;
 }
 
-.itemText{
+.itemAdress{
   font-weight: 500;
 }
 
-
-.contentIn{
+.content{
   height: 182px;
-  width: 960px;
-  background-color: #0F05A0;
+  width: auto;
   margin: 0 auto 40px auto;
   padding: 34.5px 0 0 35px;
 }
 
-.contentOut{
-  height: 182px;
-  width: 960px;
+
+
+.in{
+
+  background-color: #0F05A0;
+
+}
+
+.out{
+
   background-color: #EB5E00;
-  margin: 0 auto 40px auto;
-  padding: 34.5px 0 0 35px;
 }
 
 p{
   color: #9AA7B1;
   font-size: 62px;
   font-weight: 500;
-  margin: 21px 0 36px 60px;
+  margin: 21px 0 36px 0;
 }
 
 </style>
