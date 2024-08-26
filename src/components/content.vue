@@ -2,21 +2,53 @@
 import {onMounted,ref, onUnmounted}  from 'vue';
 
 const screenData= ref([]);
-const token= "3ulADlktGGVwNiK1yblJ5ElAUU1o";
+const weather= ref([]);
+const token= import.meta.env.VITE_SRF_TOKEN;
 let intervalId = null;
+const date= new Date();
+
 
 async function fetchScreenData() {
 
     try{
-            const response = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1hzQjE8BH0Ilm8nam7sNRKRyAsd9akxQdKjLz4oBF8is/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=AIzaSyBnkrLzmcWjKBf7TdGATCrf6SmpfKW_Kjw')
+            const googleApi= import.meta.env.VITE_GOOGLE_API_KEY
+            const googleSheetId= import.meta.env.VITE_GOOGLE_SHEET_ID
+            const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${googleSheetId}/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=${googleApi}`)
             const data = await response.json()
             screenData.value = data.valueRanges[0].values.slice(1)
     }catch (error){
             console.log(error)
     }
 }
+async function fetchWeathernData() {
+
+try{
+        const response = await fetch('https://api.srgssr.ch/srf-meteo/v2/forecastpoint/47.3587,8.5128', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` 
+      }
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    weather.value= data.days;
+    console.log(data.days);
+
+    
+}catch (error){
+        console.log(error)
+}
+}
+console.log(weather);
+function findDateMatch(weatherDate, refDate){
+  
+}
 
 onMounted(() => {
+  fetchWeathernData();
   fetchScreenData();
   intervalId = setInterval(  fetchScreenData, 2* 60* 60* 1000);
 });
@@ -28,7 +60,6 @@ onUnmounted(() => {
       }
     });
 
-const date= new Date();
 
 const formatDate = (date) => {
   const tag = String(date.getDate()).padStart(2, '0');
@@ -39,7 +70,7 @@ const formatDate = (date) => {
 
 const formattedDate= formatDate(date);
 
-</Script>
+</script>
 
 <template>
     <div>
@@ -52,8 +83,8 @@ const formattedDate= formatDate(date);
             <ul>
                 <li :class="item[3] == 'Oppotunity, Räffelstrasse 12' ? 'itemTimeIn' : 'itemTimeOut'"
                     class= "itemTime">{{ item[1] }}, {{ item[0] }}</li>
-                <li class=" itemTitle">{{item[2]}}</li>
-                <li class=" itemAdress">{{ item[3] }}</li>
+                <li class= "itemTitle">{{item[2]}}</li>
+                <li class= "itemAdress">{{ item[3] }}</li>
             </ul>
         </div>
     </div>

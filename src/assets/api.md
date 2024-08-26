@@ -62,10 +62,16 @@ curl -X POST \
 
 
   https://api.srgssr.ch/srf-meteo/geoocationNames?zip=8045
-  https://api.srgssr.ch/srf-meteo/v2/forecastpoint/{47.3587,8.5128}
+  https://api.srgssr.ch/srf-meteo/v2/forecastpoint/47.3587,8.5128
   api.srgssr.ch/srf-meteo/v2/forecastpoint/{47.3587,8.5128}
 
   /geolocations/{id}
 
   geolocationID: 
   47.3587,8.5128
+
+
+  env
+VITE_GOOGLE_API_KEY=AIzaSyBnkrLzmcWjKBf7TdGATCrf6SmpfKW_Kjw
+VITE_GOOGLE_SHEET_ID=1hzQjE8BH0Ilm8nam7sNRKRyAsd9akxQdKjLz4oBF8is
+VITE_SRF_TOKEN=3ulADlktGGVwNiK1yblJ5ElAUU1o
