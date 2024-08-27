@@ -1,9 +1,9 @@
 <script setup>
 import {onMounted,ref, onUnmounted}  from 'vue';
+import weather from '@/components/weather.vue'
+
 
 const screenData= ref([]);
-const weather= ref([]);
-const token= import.meta.env.VITE_SRF_TOKEN;
 let intervalId = null;
 const date= new Date();
 
@@ -20,35 +20,9 @@ async function fetchScreenData() {
             console.log(error)
     }
 }
-async function fetchWeathernData() {
 
-try{
-        const response = await fetch('https://api.srgssr.ch/srf-meteo/v2/forecastpoint/47.3587,8.5128', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}` 
-      }
-    });
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    const data = await response.json();
-    weather.value= data.days;
-    console.log(data.days);
-
-    
-}catch (error){
-        console.log(error)
-}
-}
-console.log(weather);
-function findDateMatch(weatherDate, refDate){
-  
-}
 
 onMounted(() => {
-  fetchWeathernData();
   fetchScreenData();
   intervalId = setInterval(  fetchScreenData, 2* 60* 60* 1000);
 });
@@ -86,6 +60,7 @@ const formattedDate= formatDate(date);
                 <li class= "itemTitle">{{item[2]}}</li>
                 <li class= "itemAdress">{{ item[3] }}</li>
             </ul>
+            <weather :current-date="item[0]"/>
         </div>
     </div>
 </template>
