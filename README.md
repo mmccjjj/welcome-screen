@@ -21,5 +21,6 @@ Das Welcome-Screen Projekt ist eine Übung zur Einführung in Vue.js. Ziel ist e
 ## Kommende Features
 
 - **Wetter-API**: Integration einer Wetter-API zur Anzeige von Wetterdaten pro Eintrag.
+  - **Nachtrag**: Hinzugefügt. 
 
 
