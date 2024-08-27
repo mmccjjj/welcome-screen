@@ -1,29 +1,22 @@
-# welcome-screen
+# Welcome-Screen Projekt
 
-This template should help get you started developing with Vue 3 in Vite.
+Das Welcome-Screen Projekt ist eine Übung zur Einführung in Vue.js. Ziel ist es, den Umgang mit Vue.js zu lernen, einschließlich Projektaufsetzung, Komponentenentwicklung und API-Integration.
 
-## Recommended IDE Setup
+## Techstack
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Vue.js**: Framework für die Erstellung von Benutzeroberflächen.
+- **GitHub**: Versionskontrolle und Repository-Management.
 
-## Customize configuration
+## Projektinhalte
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- **Projektaufsetzung**: Erstellen und Strukturieren eines Vue.js-Projekts.
+- **GitHub**: Erstellen eines Repositories und Versionierung des Projekts.
+- **Deployment**: Bereitstellung des Vue.js-Projekts.
+- **Frontend**: Nutzung und Anpassung von Vue-Komponenten, Styling gemäß Figma-Vorlage, und Datenmanagement.
 
-## Project Setup
 
-```sh
-npm install
-```
+## Kommende Features
 
-### Compile and Hot-Reload for Development
+- **Wetter-API**: Integration einer Wetter-API zur Anzeige von Wetterdaten pro Eintrag.
 
-```sh
-npm run dev
-```
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
