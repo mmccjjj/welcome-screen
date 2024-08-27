@@ -1,3 +1,6 @@
+
+![alt text](https://github.com/mmccjjj/welcome-screen/blob/main/TitelBildGithub1-0.png?raw=true)
+
 # Welcome-Screen Projekt
 
 Das Welcome-Screen Projekt ist eine Übung zur Einführung in Vue.js. Ziel ist es, den Umgang mit Vue.js zu lernen, einschließlich Projektaufsetzung, Komponentenentwicklung und API-Integration.
