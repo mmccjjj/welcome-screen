@@ -67,6 +67,10 @@ const formattedDate= formatDate(date);
 
 <style scoped>
 
+ul{
+  flex-grow: 1;
+}
+
 li{
   color: 
   #FFBFAB;
@@ -96,6 +100,9 @@ li{
   width: auto;
   margin: 0 auto 40px auto;
   padding: 34.5px 0 0 35px;
+  display: flex;
+
+ 
 }
 
 

@@ -28,7 +28,7 @@ try{
     }
     const data = await response.json();
     weather.value= data.days;
-    console.log(data.days);
+  
 
     
 }catch (error){
@@ -68,14 +68,48 @@ onUnmounted(() => {
             <img class="icon" v-else-if="item.SUN_H < 3 && item.PROBPCP_PERCENT <= 10" :src="halfHalf">
             <img class="icon" v-else-if="item.SUN_H < 3 && item.PROBPCP_PERCENT > 10" :src="rain">
             <img class="icon" v-else :src="halfHalf">
-            
-            <p>{{ item.TN_C }}</p>
-            <p>{{ item.TX_C }}</p>
 
+            <ul>
+              <li>min: {{ item.TN_C }}C°</li>
+              <li>max: {{ item.TX_C }}C°</li>
+            </ul>
           </div>
        </div>
 </template> 
 
 <style scoped>
+.icon{
+  max-width: 100px;
+  height: auto;
+}
+
+.weather{
+  margin-right: 60px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 30px;
+  border-width: 4px;
+  border-color: white;
+  border-style: solid;
+  border-radius: 10px;
+  padding: 8px;
+  background-color: rgba(255, 255, 255, 0.13);
+  box-shadow: 
+        6px 6px 10px rgba(0, 0, 0, 5),
+        inset 0 2px 3px rgba(255, 255, 255, 0.8),
+        inset 2px 0 3px rgba(255, 255, 255, 0.8);
+
+}
+
+ul{
+  margin: auto 0 auto 0;
+  transform: translateY(2.5px);
+  color: white;
+  font-weight: 800;
+  font-size: 20px;
+}
+li{
+  margin: 5px;
+}
 
 </style>
