@@ -65,7 +65,6 @@ onUnmounted(() => {
 
             <img class="icon" v-if="item.SUN_H >= 6 && item.PROBPCP_PERCENT <= 10" :src="sunny">
             <img class="icon" v-else-if="item.SUN_H >= 3 && item.PROBPCP_PERCENT <= 10" :src="cloudy">
-            <img class="icon" v-else-if="item.SUN_H < 3 && item.PROBPCP_PERCENT <= 10" :src="halfHalf">
             <img class="icon" v-else-if="item.SUN_H < 3 && item.PROBPCP_PERCENT > 10" :src="rain">
             <img class="icon" v-else :src="halfHalf">
 
