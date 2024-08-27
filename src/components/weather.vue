@@ -70,8 +70,8 @@ onUnmounted(() => {
             <img class="icon" v-else :src="halfHalf">
 
             <ul>
-              <li>min: {{ item.TN_C }}C°</li>
-              <li>max: {{ item.TX_C }}C°</li>
+              <li>min: {{ item.TN_C }}°C</li>
+              <li>max: {{ item.TX_C }}°C</li>
             </ul>
           </div>
        </div>
